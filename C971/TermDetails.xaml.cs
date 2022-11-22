@@ -23,7 +23,7 @@ namespace C971
             this.selectedTerm = selectedTerm;
 
             navigationTitle.Text = selectedTerm.Title;
-            termDates.Text = $"Start Date:{selectedTerm.Start:MM-dd-yyyy} End Date: {selectedTerm.End:MM-dd-yyyy}";
+            termDates.Text = $"Start Date: {selectedTerm.Start:MM-dd-yyyy}\nEnd Date: {selectedTerm.End:MM-dd-yyyy}";
         }
 
         private void updateButton_Clicked(object sender, EventArgs e)
@@ -70,6 +70,11 @@ namespace C971
             {
                 DisplayAlert("Failure!", "Experience not deleted", "Close");
             }
+        }
+
+        private void addCourseButton_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

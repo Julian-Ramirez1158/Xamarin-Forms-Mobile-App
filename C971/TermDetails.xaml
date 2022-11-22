@@ -8,10 +8,11 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <StackLayout>
-        <Label x:Name="termDates"></Label>
+        <Label x:Name="termDates" Style="{StaticResource termDates}"></Label>
         <Entry x:Name="termEntry" VerticalOptions="CenterAndExpand"/>
-        <Button Text="Update" x:Name="updateButton" Clicked="updateButton_Clicked" />
-        <Button Text="Delete" x:Name="deleteButton" Clicked="deleteButton_Clicked" />
+        <Button Text="Add Course" x:Name="addCourseButton" Clicked="addCourseButton_Clicked" />
+        <Button Text="Update Term" x:Name="updateButton" Clicked="updateButton_Clicked" />
+        <Button Text="Delete Term" x:Name="deleteButton" Clicked="deleteButton_Clicked" />
     </StackLayout>
     
 </ContentPage>
