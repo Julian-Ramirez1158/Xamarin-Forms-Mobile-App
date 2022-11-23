@@ -40,15 +40,19 @@ namespace C971
 
             // close the connection
             connection.Close();
+            
 
+            // TODO: add actual data validation here
             if (rowsInserted > 0)
             {
                 DisplayAlert("Success!", "Term succesffuly inserted", "Close");
+                Navigation.PushAsync(new TermHomePage());
             }
             else
             {
                 DisplayAlert("Failure!", "Term not inserted", "Close");
             }
+            
         }
     }
 }

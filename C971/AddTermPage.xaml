@@ -3,19 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971.AddTermPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Clicked="ToolbarItem_Clicked"></ToolbarItem>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to the Add Term Page!"
-                HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="termTitle" Placeholder="Add Term Title" VerticalOptions="Center"></Entry>
-            <Label Text="Term Start Date" VerticalOptions="Center"></Label>
+                HorizontalOptions="Center" />
+            <Entry x:Name="termTitle" Placeholder="Add Term Title"></Entry>
+            <Label Text="Term Start Date"></Label>
             <DatePicker x:Name="startDateEntered"></DatePicker>
             <Label Text="Term End Date"></Label>
             <DatePicker x:Name="endDateEntered"></DatePicker>
-            
+            <Button Text="Save Term" VerticalOptions="EndAndExpand" Clicked="ToolbarItem_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
