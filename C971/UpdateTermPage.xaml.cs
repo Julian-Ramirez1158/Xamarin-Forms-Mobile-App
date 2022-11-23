@@ -17,6 +17,10 @@ namespace C971
         public UpdateTermPage(TermDetails termDetails)
         {
             InitializeComponent();
+
+            // Hide default android navbar back button
+            NavigationPage.SetHasBackButton(this, false);
+
             TermDetails = termDetails;
             termTitle.Text = termDetails.selectedTerm.Title;
             startDateEntered.Date = termDetails.selectedTerm.Start;
@@ -51,6 +55,11 @@ namespace C971
             {
                 DisplayAlert("Failure!", "Term not updated", "Close");
             }
+        }
+
+        private void cancelButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }

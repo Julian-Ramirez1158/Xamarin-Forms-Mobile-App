@@ -9,6 +9,10 @@
         </StackLayout>
     </NavigationPage.TitleView>
     
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="homeButton" Text="Home" Clicked="homeButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <StackLayout>
         <Label x:Name="termDates" Style="{StaticResource termDates}"></Label>
         <Entry x:Name="termEntry" VerticalOptions="CenterAndExpand"/>

@@ -3,6 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971.AddTermPage">
 
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label x:Name="navigationTitle" Style="{StaticResource add_editNavigationTitle}" Text="Add Term"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="cancelButton" Text="Cancel" Clicked="cancelButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to the Add Term Page!"

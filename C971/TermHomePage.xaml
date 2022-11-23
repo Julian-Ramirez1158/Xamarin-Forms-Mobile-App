@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971.TermHomePage">
+    
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="Terms" Style="{StaticResource homePageTitle}"></Label>
+            <Label Text="Terms" Style="{StaticResource navigationTitle}"></Label>
         </StackLayout>
     </NavigationPage.TitleView>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="add.png" Clicked="ToolbarItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>

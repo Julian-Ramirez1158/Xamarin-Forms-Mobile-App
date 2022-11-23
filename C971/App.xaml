@@ -12,14 +12,15 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="Title"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="Margin" Value="0, 0, 75, 0"/>
+                <Setter Property="Margin" Value="50, 0, 0, 0"/>
             </Style>
-            <Style x:Key="homePageTitle" TargetType="Label">
+            <Style x:Key="add_editNavigationTitle" TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="Title"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="70, 0, 0, 0"/>
             </Style>
             <Style x:Key="termDates" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>

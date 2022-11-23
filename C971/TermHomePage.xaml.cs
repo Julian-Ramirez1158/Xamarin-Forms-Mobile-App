@@ -18,7 +18,8 @@ namespace C971
         {
             InitializeComponent();
 
-            
+            // Hide default android navbar back button
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)

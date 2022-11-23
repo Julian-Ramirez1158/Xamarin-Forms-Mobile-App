@@ -24,7 +24,9 @@ namespace C971
 
             navigationTitle.Text = selectedTerm.Title;
             termDates.Text = $"Start Date: {selectedTerm.Start:MM-dd-yyyy}\nEnd Date: {selectedTerm.End:MM-dd-yyyy}";
-            
+
+            // Hide default android navbar back button
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         
@@ -60,6 +62,11 @@ namespace C971
         private void addCourseButton_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        private void homeButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TermHomePage());
         }
     }
 }

@@ -17,6 +17,9 @@ namespace C971
         public AddTermPage()
         {
             InitializeComponent();
+
+            // Hide default android navbar back button
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -53,6 +56,11 @@ namespace C971
                 DisplayAlert("Failure!", "Term not inserted", "Close");
             }
             
+        }
+
+        private void cancelButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }
