@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971.TermDetails">
+    
     <NavigationPage.TitleView>
         <StackLayout>
             <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}"></Label>
         </StackLayout>
     </NavigationPage.TitleView>
+    
     <StackLayout>
         <Label x:Name="termDates" Style="{StaticResource termDates}"></Label>
         <Entry x:Name="termEntry" VerticalOptions="CenterAndExpand"/>
