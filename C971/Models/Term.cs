@@ -11,7 +11,7 @@ namespace C971.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [MaxLength(250)]
+        [MaxLength(25)]
         public string Title { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }

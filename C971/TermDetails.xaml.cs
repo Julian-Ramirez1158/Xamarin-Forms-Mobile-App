@@ -16,6 +16,7 @@ namespace C971
     public partial class TermDetails : ContentPage
     {
         public Term selectedTerm;
+        public TermDetails termDetails;
         public TermDetails(Term selectedTerm)
         {
             InitializeComponent();
@@ -29,7 +30,21 @@ namespace C971
             NavigationPage.SetHasBackButton(this, false);
         }
 
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+            // Creates table if one doesn't already exists
+            connection.CreateTable<Course>();
+            // Allows us to return the table query and turn it into a list
+            var entries = connection.Table<Course>().ToList();
+            listView.ItemsSource = entries;
+
+            connection.Close();
+        }
+
+
         private void updateButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new UpdateTermPage(this));
@@ -61,12 +76,23 @@ namespace C971
 
         private void addCourseButton_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new AddCoursePage(termDetails, selectedTerm));
         }
 
         private void homeButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new TermHomePage());
         }
+
+        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var selectedItem = listView.SelectedItem as Course;
+
+            //if (selectedItem != null)
+            //{
+            //    Navigation.PushAsync(new TermDetails(selectedItem));
+            //}
+        }
     }
+    
 }

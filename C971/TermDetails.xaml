@@ -16,6 +16,14 @@
     <StackLayout>
         <Label x:Name="termDates" Style="{StaticResource termDates}"></Label>
         <Entry x:Name="termEntry" VerticalOptions="CenterAndExpand"/>
+        <ListView x:Name="listView"
+              ItemSelected="listView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding CourseTitle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Text="Add Course" x:Name="addCourseButton" Clicked="addCourseButton_Clicked" />
         <Button Text="Update Term" x:Name="updateButton" Clicked="updateButton_Clicked" />
         <Button Text="Delete Term" x:Name="deleteButton" Clicked="deleteButton_Clicked" />
