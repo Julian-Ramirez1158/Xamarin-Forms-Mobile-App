@@ -13,6 +13,7 @@ namespace C971
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
+
         }
 
         public App(string databaseLocation)

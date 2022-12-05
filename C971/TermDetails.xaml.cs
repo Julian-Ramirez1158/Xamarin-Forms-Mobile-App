@@ -16,7 +16,6 @@ namespace C971
     public partial class TermDetails : ContentPage
     {
         public Term selectedTerm;
-        public TermDetails termDetails;
         public TermDetails(Term selectedTerm)
         {
             InitializeComponent();
@@ -38,7 +37,9 @@ namespace C971
             // Creates table if one doesn't already exists
             connection.CreateTable<Course>();
             // Allows us to return the table query and turn it into a list
-            var entries = connection.Table<Course>().ToList();
+            List<Course> entries = connection.Query<Course>($"SELECT * FROM Course WHERE TermId = {selectedTerm.Id}").ToList();
+                //Table<Course.Where<Course.Equals(SelectedTerm.Id)>().ToList();
+
             listView.ItemsSource = entries;
 
             connection.Close();
@@ -76,7 +77,7 @@ namespace C971
 
         private void addCourseButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AddCoursePage(termDetails, selectedTerm));
+            Navigation.PushAsync(new AddCoursePage(selectedTerm));
         }
 
         private void homeButton_Clicked(object sender, EventArgs e)

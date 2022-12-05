@@ -15,13 +15,11 @@ namespace C971
     public partial class AddCoursePage : ContentPage
     {
         public Term SelectedTerm;
-        public TermDetails TermDetails;
-        public AddCoursePage(TermDetails termDetails, Term selectedTerm)
+        public AddCoursePage(Term selectedTerm)
         {
             InitializeComponent();
 
             SelectedTerm = selectedTerm;
-            TermDetails = termDetails;
 
             // Hide default android navbar back button
             NavigationPage.SetHasBackButton(this, false);
@@ -37,6 +35,7 @@ namespace C971
             Course course = new Course()
             {
                 CourseTitle = courseTitle.Text,
+                TermId = SelectedTerm.Id,
                 Start = startDateEntered.Date,
                 End = endDateEntered.Date,
                 CourseStatus = (string)courseStatus.SelectedItem,

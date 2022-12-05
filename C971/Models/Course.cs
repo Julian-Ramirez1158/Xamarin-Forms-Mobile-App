@@ -10,6 +10,7 @@ namespace C971.Models
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public int TermId { get; set; }
 
         [MaxLength(50)]
         public string CourseTitle { get; set; }

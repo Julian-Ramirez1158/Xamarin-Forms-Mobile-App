@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using System.IO;
+using Xamarin.Forms.Platform.Android;
 
 namespace C971.Droid
 {
@@ -17,6 +18,8 @@ namespace C971.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            // this.SetStatusBarColor(Xamarin.Forms.Color.FromHex("#1E90FF").ToAndroid());
 
             string databaseName = "C971_db.sqlite";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);

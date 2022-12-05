@@ -20,6 +20,7 @@ namespace C971
 
             // Hide default android navbar back button
             NavigationPage.SetHasBackButton(this, false);
+            
 
             TermDetails = termDetails;
             termTitle.Text = termDetails.selectedTerm.Title;
