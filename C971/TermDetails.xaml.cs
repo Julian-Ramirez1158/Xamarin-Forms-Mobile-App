@@ -66,12 +66,12 @@ namespace C971
             // TODO: add some actual validation here you twit
             if (rowsDeleted > 0)
             {
-                DisplayAlert("Success!", "Experience succesffuly deleted", "Close");
+                DisplayAlert("Success!", "Term succesffuly deleted", "Close");
                 Navigation.PushAsync(new TermHomePage());
             }
             else
             {
-                DisplayAlert("Failure!", "Experience not deleted", "Close");
+                DisplayAlert("Failure!", "Term not deleted", "Close");
             }
         }
 
@@ -87,12 +87,12 @@ namespace C971
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedItem = listView.SelectedItem as Course;
+            var selectedCourse = listView.SelectedItem as Course;
 
-            //if (selectedItem != null)
-            //{
-            //    Navigation.PushAsync(new TermDetails(selectedItem));
-            //}
+            if (selectedCourse != null)
+            {
+                Navigation.PushAsync(new CourseDetails(selectedCourse));
+            }
         }
     }
     

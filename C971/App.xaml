@@ -6,7 +6,7 @@
         <ResourceDictionary>
             <Color x:Key="blueColor">#1E90FF</Color>
             <Color x:Key="whiteColor">#FFFFFF</Color>
-            <Style x:Key="navBar" TargetType="NavigationPage">
+            <Style x:Key="navBar" TargetType="Page">
                 <Setter Property="BackgroundColor" Value="#1E90FF" />
 
             </Style>
@@ -29,7 +29,7 @@
             <Style x:Key="termDates" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="Margin" Value="0,20,0,0"/>
             </Style>

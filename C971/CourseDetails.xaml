@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971.CourseDetails">
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="termButton" Text="Back" Clicked="termButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <Label x:Name="courseDates" Style="{StaticResource termDates}"></Label>
+        <Label x:Name="courseStatus" Style="{StaticResource termDates}"></Label>
+        <Label x:Name="instructorName" Style="{StaticResource termDates}"></Label>
+        <Label x:Name="instructorPhone" Style="{StaticResource termDates}"></Label>
+        <Label x:Name="instructorEmail" Style="{StaticResource termDates}"></Label>
+
+        <Button Text="Assessments" x:Name="AssessmentButton" VerticalOptions="EndAndExpand" Clicked="AssessmentButton_Clicked"/>
+        <Button Text="Update Course" x:Name="updateButton" VerticalOptions="End" Clicked="updateButton_Clicked"/>
+        <Button Text="Delete Course" x:Name="deleteButton" VerticalOptions="End" Clicked="deleteButton_Clicked"/>
+    </StackLayout>
+    
+</ContentPage>
