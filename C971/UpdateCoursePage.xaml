@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971.UpdateCoursePage">
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label x:Name="navigationTitle" Style="{StaticResource add_editNavigationTitle}" Text="Update Course"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="cancelButton" Text="Cancel" Clicked="cancelButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to the Update Course Page!"
+                    HorizontalOptions="Center" />
+            <Entry x:Name="courseTitle" Placeholder="Add Course Title"></Entry>
+            <Label Text="Course Start Date"></Label>
+            <DatePicker x:Name="startDateEntered"></DatePicker>
+            <Label Text="Course End Date"></Label>
+            <DatePicker x:Name="endDateEntered"></DatePicker>
+            <Picker Title="Course Status" x:Name="courseStatus">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                        <x:String>Plan to take</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Label Text="Instructor Information"></Label>
+            <Entry Placeholder="Name" x:Name="instructorName"></Entry>
+            <Entry Placeholder="Phone" x:Name="instructorPhone"></Entry>
+            <Entry Placeholder="Email" x:Name="instructorEmail"></Entry>
+            <Button x:Name="SaveButton" Text="Save Course" VerticalOptions="EndAndExpand" Clicked="SaveButton_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

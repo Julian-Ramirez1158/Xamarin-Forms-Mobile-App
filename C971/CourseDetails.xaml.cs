@@ -34,6 +34,7 @@ namespace C971
 
         private void termButton_Clicked(object sender, EventArgs e)
         {
+            //TODO fix this navigation --> needs to point to appropriate term details page
             Navigation.PopAsync();
         }
 
@@ -44,7 +45,7 @@ namespace C971
 
         private void updateButton_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new UpdateCoursePage(this));
         }
 
         private void deleteButton_Clicked(object sender, EventArgs e)
