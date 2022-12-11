@@ -22,7 +22,7 @@ namespace C971
 
             this.selectedTerm = selectedTerm;
 
-            navigationTitle.Text = selectedTerm.Title;
+            navigationTitle.Text = $"{selectedTerm.Title} Courses";
             termDates.Text = $"Start Date: {selectedTerm.Start:MM-dd-yyyy}\nEnd Date: {selectedTerm.End:MM-dd-yyyy}";
 
             // Hide default android navbar back button

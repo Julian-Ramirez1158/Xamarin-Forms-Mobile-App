@@ -22,6 +22,5 @@
                 <TextCell Text="{Binding Title}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
-
     </ListView>
 </ContentPage>

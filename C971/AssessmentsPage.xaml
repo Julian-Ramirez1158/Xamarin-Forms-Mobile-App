@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971.AssessmentsPage">
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="backButton" Text="Back" Clicked="backButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <ListView x:Name="listView"
+                  ItemSelected="listView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding AssessmentTitle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Add Assessment" x:Name="AddAssessmentButton" VerticalOptions="EndAndExpand" Clicked="AddAssessmentButton_Clicked"/>
+    </StackLayout>
+
+
+</ContentPage>

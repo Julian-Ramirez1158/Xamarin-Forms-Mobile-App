@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C971.AddAssessmentPage">
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label x:Name="navigationTitle" Style="{StaticResource add_editNavigationTitle}" Text="Add Assessment"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="cancelButton" Text="Cancel" Clicked="cancelButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to the Add Assessment Page!"
+                HorizontalOptions="Center" />
+            <Entry x:Name="assessmentTitle" Placeholder="Add Assessment Title"></Entry>
+            <Label Text="Assessment Start Date"></Label>
+            <DatePicker x:Name="startDateEntered"></DatePicker>
+            <Label Text="Assessment End Date"></Label>
+            <DatePicker x:Name="endDateEntered"></DatePicker>
+            <Picker Title="Assessment Type" x:Name="assessmentType">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Objective Assessment</x:String>
+                        <x:String>CPerformance Assessment</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                    <Switch 
+                            x:Name="notificationButton"
+                            HorizontalOptions="CenterAndExpand" 
+                            Scale="1.2"/>
+            <Button Text="Save Assessment" x:Name="SaveAssessmentButton" VerticalOptions="EndAndExpand" Clicked="SaveAssessmentButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

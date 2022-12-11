@@ -40,7 +40,7 @@ namespace C971
 
         private void AssessmentButton_Clicked(object sender, EventArgs e)
         {
-            
+            Navigation.PushAsync(new AssessmentsPage(selectedCourse));
         }
 
         private void updateButton_Clicked(object sender, EventArgs e)
