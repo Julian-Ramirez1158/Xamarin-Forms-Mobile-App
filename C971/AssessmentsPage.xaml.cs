@@ -15,10 +15,12 @@ namespace C971
     public partial class AssessmentsPage : ContentPage
     {
         public Course SelectedCourse;
-        public AssessmentsPage(Course selectedCourse)
+        public Term SelectedTerm;
+        public AssessmentsPage(Course selectedCourse, Term selectedTerm)
         {
             InitializeComponent();
             SelectedCourse = selectedCourse;
+            SelectedTerm = selectedTerm;
             navigationTitle.Text = $"{selectedCourse.CourseTitle} Assessments";
 
 
@@ -43,17 +45,24 @@ namespace C971
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            //TODO fix navigation to take to appropriate course details page 
+            Navigation.PushAsync(new CourseDetails(SelectedCourse, SelectedTerm));
         }
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            var selectedAssessment = listView.SelectedItem as Assessment;
 
+            if (selectedAssessment != null)
+            {
+                Navigation.PushAsync(new AssessmentDetails(selectedAssessment, SelectedCourse, SelectedTerm));
+            }
         }
 
         private void AddAssessmentButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AddAssessmentPage(SelectedCourse));
+            Navigation.PushAsync(new AddAssessmentPage(SelectedCourse, SelectedTerm));
         }
+
     }
 }

@@ -15,11 +15,12 @@ namespace C971
     public partial class AddAssessmentPage : ContentPage
     {
         public Course SelectedCourse;
-        public AddAssessmentPage(Course selectedCourse)
+        public Term SelectedTerm;
+        public AddAssessmentPage(Course selectedCourse, Term selectedTerm)
         {
             InitializeComponent();
             SelectedCourse = selectedCourse;
-
+            SelectedTerm = selectedTerm;
 
 
 
@@ -37,6 +38,7 @@ namespace C971
             Assessment assessment = new Assessment()
             {
                 AssessmentTitle = assessmentTitle.Text,
+                CourseId = SelectedCourse.Id,
                 Start = startDateEntered.Date,
                 End = endDateEntered.Date,
                 AssessmentType = (string)assessmentType.SelectedItem,
@@ -61,7 +63,7 @@ namespace C971
             if (rowsInserted > 0)
             {
                 DisplayAlert("Success!", "Assessment succesffuly inserted", "Close");
-                Navigation.PushAsync(new AssessmentsPage(SelectedCourse));
+                Navigation.PushAsync(new AssessmentsPage(SelectedCourse, SelectedTerm));
             }
             else
             {

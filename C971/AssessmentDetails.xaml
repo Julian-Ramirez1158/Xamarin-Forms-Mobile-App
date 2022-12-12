@@ -2,11 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971.AssessmentDetails">
-    <ContentPage.Content>
+
+    <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="courseButton" Text="Course" Clicked="courseButton_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content> 
+        <StackLayout>
+            <Label x:Name="assessmentDates" Style="{StaticResource termDates}"></Label>
+            <Label x:Name="assessmentStatus" Style="{StaticResource termDates}"></Label>
+            <Label x:Name="assessmentType" Style="{StaticResource termDates}"></Label>
+            <Label x:Name="notifications" Style="{StaticResource termDates}"></Label>
+
+            <Button Text="Update Assessment" x:Name="UpdateAssessmentButton" VerticalOptions="EndAndExpand" Clicked="UpdateAssessmentButton_Clicked"/>
+            <Button Text="Delete Assessment" x:Name="DeleteAssessmentButton" VerticalOptions="End" Clicked="DeleteAssessmentButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
