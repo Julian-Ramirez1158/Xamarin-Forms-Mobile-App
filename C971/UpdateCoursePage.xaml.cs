@@ -15,6 +15,7 @@ namespace C971
     public partial class UpdateCoursePage : ContentPage
     {
         public CourseDetails CourseDetails;
+        public Course SelectedCourse;
         public UpdateCoursePage(CourseDetails courseDetails)
         {
             InitializeComponent();
@@ -27,7 +28,12 @@ namespace C971
             instructorName.Text = courseDetails.selectedCourse.InstructorName;
             instructorPhone.Text = courseDetails.selectedCourse.InstructorPhone;
             instructorEmail.Text = courseDetails.selectedCourse.InstructorEmail;
+            courseNotes.Text = courseDetails.selectedCourse.CourseNotes;
+            notificationButton.IsToggled = courseDetails.selectedCourse.NotificationsOn;
 
+
+            // Hide default android navbar back button
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         private void cancelButton_Clicked(object sender, EventArgs e)
@@ -44,6 +50,8 @@ namespace C971
             CourseDetails.selectedCourse.InstructorName = instructorName.Text;
             CourseDetails.selectedCourse.InstructorPhone = instructorPhone.Text;
             CourseDetails.selectedCourse.InstructorEmail = instructorEmail.Text;
+            CourseDetails.selectedCourse.CourseNotes = courseNotes.Text;
+            CourseDetails.selectedCourse.NotificationsOn = notificationButton.IsToggled;
 
             SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
 
@@ -60,7 +68,7 @@ namespace C971
                 DisplayAlert("Success!", "Course succesffuly updated", "Close");
                 // TODO fix navigation problem where back button takes you to previously unsaved entry
 
-                Navigation.PushAsync(new CourseDetails(CourseDetails.selectedCourse));
+                Navigation.PushAsync(new CourseDetails(CourseDetails.selectedCourse, CourseDetails.SelectedTerm));
             }
             else
             {

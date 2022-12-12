@@ -41,7 +41,9 @@ namespace C971
                 CourseStatus = (string)courseStatus.SelectedItem,
                 InstructorName = instructorName.Text,
                 InstructorPhone = instructorPhone.Text,
-                InstructorEmail = instructorEmail.Text
+                InstructorEmail = instructorEmail.Text,
+                CourseNotes = courseNotes.Text,
+                NotificationsOn = notificationButton.IsToggled
             };
 
             // open connection to db
@@ -61,12 +63,12 @@ namespace C971
             // TODO: add actual data validation here
             if (rowsInserted > 0)
             {
-                DisplayAlert("Success!", "Term succesffuly inserted", "Close");
+                DisplayAlert("Success!", "Course succesffuly inserted", "Close");
                 Navigation.PushAsync(new TermDetails(SelectedTerm));
             }
             else
             {
-                DisplayAlert("Failure!", "Term not inserted", "Close");
+                DisplayAlert("Failure!", "Course not inserted", "Close");
             }
         }
     }

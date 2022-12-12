@@ -36,6 +36,12 @@
             <Entry Placeholder="Name" x:Name="instructorName"></Entry>
             <Entry Placeholder="Phone" x:Name="instructorPhone"></Entry>
             <Entry Placeholder="Email" x:Name="instructorEmail"></Entry>
+            <Editor Placeholder="Course Notes" x:Name="courseNotes" AutoSize="TextChanges" />
+            <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+            <Switch 
+                            x:Name="notificationButton"
+                            HorizontalOptions="CenterAndExpand" 
+                            Scale="1.2"/>
             <Button x:Name="SaveButton" Text="Save Course" VerticalOptions="EndAndExpand" Clicked="SaveButton_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>

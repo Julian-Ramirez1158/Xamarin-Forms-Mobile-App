@@ -91,7 +91,7 @@ namespace C971
 
             if (selectedCourse != null)
             {
-                Navigation.PushAsync(new CourseDetails(selectedCourse));
+                Navigation.PushAsync(new CourseDetails(selectedCourse, selectedTerm));
             }
         }
     }

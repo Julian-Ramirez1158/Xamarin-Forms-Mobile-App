@@ -20,6 +20,8 @@ namespace C971.Models
         public string InstructorName { get; set; }
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
+        public string CourseNotes { get; set; }
+        public bool NotificationsOn { get; set; }
 
 
 
