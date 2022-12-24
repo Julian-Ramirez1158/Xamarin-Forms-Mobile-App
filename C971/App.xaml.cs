@@ -118,19 +118,28 @@ namespace C971
             connection.CreateTable<Course>();
             connection.CreateTable<Assessment>();
 
-            // insert data
-            connection.Insert(term);
-            List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{term.Title}'");
-            course.TermId = terms[0].Id;
-            connection.Insert(course);
-            List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{course.CourseTitle}'");
-            assessment1.CourseId = courses[0].Id;
-            assessment2.CourseId = courses[0].Id;
-            connection.Insert(assessment1);
-            connection.Insert(assessment2);
+            var Terms = connection.Table<Term>().ToList();
+            
+            if (Terms.Count == 0)
+            {
+                // insert data
+                connection.Insert(term);
+                List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{term.Title}'");
+                course.TermId = terms[0].Id;
+                connection.Insert(course);
+                List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{course.CourseTitle}'");
+                assessment1.CourseId = courses[0].Id;
+                assessment2.CourseId = courses[0].Id;
+                connection.Insert(assessment1);
+                connection.Insert(assessment2);
 
-            // close the connection
-            connection.Close();
+                // close the connection
+                connection.Close();
+            }
+            else
+            {
+                return;
+            }
         }
 
         protected override void OnStart()

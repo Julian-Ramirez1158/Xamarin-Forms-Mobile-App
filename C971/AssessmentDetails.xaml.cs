@@ -1,4 +1,5 @@
 ﻿using C971.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,27 @@ namespace C971
 
         private void DeleteAssessmentButton_Clicked(object sender, EventArgs e)
         {
+            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
 
+            connection.CreateTable<Assessment>();
+
+            // delete data
+            int rowsDeleted = connection.Delete(SelectedAssessment);
+
+            // close the connection
+            connection.Close();
+
+            // TODO: add some actual validation here you twit
+            if (rowsDeleted > 0)
+            {
+                DisplayAlert("Success!", "Assessment succesffuly deleted", "Close");
+                //work around for non-async navigation
+                Navigation.RemovePage(this);
+            }
+            else
+            {
+                DisplayAlert("Failure!", "Assessment not deleted", "Close");
+            }
         }
 
         
