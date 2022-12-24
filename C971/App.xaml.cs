@@ -2,6 +2,7 @@
 using Plugin.LocalNotifications;
 using SQLite;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -77,7 +78,6 @@ namespace C971
             var sampleDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             Term term = new Term()
             {
-                Id = 420,
                 Title = "Sample Term",
                 Start = sampleDate,
                 End = sampleDate.AddMonths(6).AddDays(-1)
@@ -85,8 +85,6 @@ namespace C971
             
             Course course = new Course()
             {
-                Id = 420,
-                TermId = 420,
                 CourseTitle = "SampleData Course 1",
                 Start = sampleDate,
                 End = sampleDate.AddMonths(4).AddDays(-1),
@@ -98,8 +96,6 @@ namespace C971
             };
             Assessment assessment1 = new Assessment()
             {
-                Id = 420,
-                CourseId = 420,
                 AssessmentTitle = "Sample Assessment 1",
                 Start = sampleDate.AddMonths(1).AddDays(-1),
                 End = sampleDate.AddMonths(2),
@@ -108,12 +104,10 @@ namespace C971
             };
             Assessment assessment2 = new Assessment()
             {
-                Id = 420,
-                CourseId = 420,
                 AssessmentTitle = "Sample Assessment 2",
                 Start = sampleDate.AddMonths(2).AddDays(-1),
                 End = sampleDate.AddMonths(3),
-                AssessmentType = "Objective Assessment",
+                AssessmentType = "Performance Assessment",
                 NotificationsOn = true
             };
             // open connection to db
@@ -126,7 +120,12 @@ namespace C971
 
             // insert data
             connection.Insert(term);
+            List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{term.Title}'");
+            course.TermId = terms[0].Id;
             connection.Insert(course);
+            List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{course.CourseTitle}'");
+            assessment1.CourseId = courses[0].Id;
+            assessment2.CourseId = courses[0].Id;
             connection.Insert(assessment1);
             connection.Insert(assessment2);
 
