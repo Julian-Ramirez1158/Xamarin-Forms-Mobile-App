@@ -35,40 +35,72 @@ namespace C971
 
         private void SaveAssessmentButton_Clicked(object sender, EventArgs e)
         {
-            Assessment assessment = new Assessment()
+            
+            try
             {
-                AssessmentTitle = assessmentTitle.Text,
-                CourseId = SelectedCourse.Id,
-                Start = startDateEntered.Date,
-                End = endDateEntered.Date,
-                AssessmentType = (string)assessmentType.SelectedItem,
-                NotificationsOn = notificationButton.IsToggled
-            };
+                if (assessmentTitle.Text == "" || assessmentTitle.Text == null)
+                {
+                    throw new Exception("Assessment Title is required.");
+                }
 
-            // open connection to db
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                if (new DateTime(startDateEntered.Date.Year, startDateEntered.Date.Month, startDateEntered.Date.Day) > new DateTime(endDateEntered.Date.Year, endDateEntered.Date.Month, endDateEntered.Date.Day))
+                {
+                    throw new Exception("The assessment start date cannot be scheduled after the assessment end date");
+                }
 
-            // creates a type Post table
-            connection.CreateTable<Assessment>();
+                if (assessmentType.SelectedItem == null)
+                {
+                    throw new Exception("An assessment type is required.");
+                }
+
+                //SQLiteConnection assessmentConnection = new SQLiteConnection(App.DatabaseLocation);
+                //var Assessments = assessmentConnection.Table<Assessment>().ToList();
+                SQLiteConnection assessmentConnection = new SQLiteConnection(App.DatabaseLocation);
+                List<Course> courses = assessmentConnection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{SelectedCourse.CourseTitle}'");
+                List<Assessment> Assessments = assessmentConnection.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = {courses[0].Id}").ToList();
+
+                if (Assessments.Any())
+                {
+                    if (Assessments.First().AssessmentType == assessmentType.SelectedItem.ToString())
+                    {
+                        throw new Exception("Only one of each type of assessment is accepted.");
+                    }
+                }
+                assessmentConnection.Close();
+
+                Assessment assessment = new Assessment()
+                {
+                    AssessmentTitle = assessmentTitle.Text,
+                    CourseId = SelectedCourse.Id,
+                    Start = startDateEntered.Date,
+                    End = endDateEntered.Date,
+                    AssessmentType = (string)assessmentType.SelectedItem,
+                    NotificationsOn = notificationButton.IsToggled
+                };
+
+                // open connection to db
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                // creates a type Assessment table
+                connection.CreateTable<Assessment>();
 
 
-            // insert data
-            int rowsInserted = connection.Insert(assessment);
+                // insert data
+                int rowsInserted = connection.Insert(assessment);
 
-            // close the connection
-            connection.Close();
+                // close the connection
+                connection.Close();
 
-
-            // TODO: add actual data validation here
-            if (rowsInserted > 0)
-            {
                 DisplayAlert("Success!", "Assessment succesffuly inserted", "Close");
                 Navigation.PushAsync(new AssessmentsPage(SelectedCourse, SelectedTerm));
+
             }
-            else
+            catch (Exception exception)
             {
-                DisplayAlert("Failure!", "Assessment not inserted", "Close");
+                DisplayAlert("ERROR:", $"{exception.Message}\nAssessment not inserted", "Close");
             }
+            
+            
         }
     }
 }

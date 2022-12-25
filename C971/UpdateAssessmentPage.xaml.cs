@@ -38,33 +38,70 @@ namespace C971
 
         private void SaveAssessmentButton_Clicked(object sender, EventArgs e)
         {
-            AssessmentDetails.SelectedAssessment.AssessmentTitle = assessmentTitle.Text;
-            AssessmentDetails.SelectedAssessment.Start = startDateEntered.Date;
-            AssessmentDetails.SelectedAssessment.End = endDateEntered.Date;
-            AssessmentDetails.SelectedAssessment.AssessmentType = (string)assessmentType.SelectedItem;
-            AssessmentDetails.SelectedAssessment.NotificationsOn = notificationButton.IsToggled;
-
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
-
-            connection.CreateTable<Assessment>();
-
-            // update data
-            int rowsInserted = connection.Update(AssessmentDetails.SelectedAssessment);
-
-            // close the connection
-            connection.Close();
-
-            if (rowsInserted > 0)
+            try
             {
+                if (assessmentTitle.Text == "" || assessmentTitle.Text == null)
+                {
+                    throw new Exception("Assessment Title is required.");
+                }
+
+                if (new DateTime(startDateEntered.Date.Year, startDateEntered.Date.Month, startDateEntered.Date.Day) > new DateTime(endDateEntered.Date.Year, endDateEntered.Date.Month, endDateEntered.Date.Day))
+                {
+                    throw new Exception("The assessment start date cannot be scheduled after the assessment end date");
+                }
+
+                if (assessmentType.SelectedItem == null)
+                {
+                    throw new Exception("An assessment type is required.");
+                }
+
+                SQLiteConnection assessmentConnection = new SQLiteConnection(App.DatabaseLocation);
+                List<Course> courses = assessmentConnection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{SelectedCourse.CourseTitle}'");
+                List<Assessment> Assessments = assessmentConnection.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = {courses[0].Id}").ToList();
+
+
+                if (AssessmentDetails.SelectedAssessment.Id != Assessments[0].Id)
+                {
+                    if (Assessments.First().AssessmentType == assessmentType.SelectedItem.ToString())
+                    {
+                        throw new Exception("Only one of each type of assessment is accepted.");
+                    }
+                }
+                if (AssessmentDetails.SelectedAssessment.Id != Assessments[1].Id)
+                {
+                    if (Assessments.Last().AssessmentType == assessmentType.SelectedItem.ToString())
+                    {
+                        throw new Exception("Only one of each type of assessment is accepted.");
+                    }
+                }
+
+                assessmentConnection.Close();
+
+                AssessmentDetails.SelectedAssessment.AssessmentTitle = assessmentTitle.Text;
+                AssessmentDetails.SelectedAssessment.Start = startDateEntered.Date;
+                AssessmentDetails.SelectedAssessment.End = endDateEntered.Date;
+                AssessmentDetails.SelectedAssessment.AssessmentType = (string)assessmentType.SelectedItem;
+                AssessmentDetails.SelectedAssessment.NotificationsOn = notificationButton.IsToggled;
+
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                connection.CreateTable<Assessment>();
+
+                // update data
+                int rowsInserted = connection.Update(AssessmentDetails.SelectedAssessment);
+
+                // close the connection
+                connection.Close();
+
                 DisplayAlert("Success!", "Assessment succesffuly updated", "Close");
-                // TODO fix navigation problem where back button takes you to previously unsaved entry
-
                 Navigation.PushAsync(new AssessmentDetails(AssessmentDetails.SelectedAssessment, AssessmentDetails.SelectedCourse, AssessmentDetails.SelectedTerm));
+
             }
-            else
+            catch (Exception exception)
             {
-                DisplayAlert("Failure!", "Assessment not updated", "Close");
+                DisplayAlert("ERROR:", $"{exception.Message}\nAssessment not updated", "Close");
             }
+
         }
 
         private void cancelButton_Clicked(object sender, EventArgs e)
