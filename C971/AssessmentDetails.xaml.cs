@@ -61,7 +61,7 @@ namespace C971
             {
                 DisplayAlert("Success!", "Assessment succesffuly deleted", "Close");
                 //work around for non-async navigation
-                Navigation.RemovePage(this);
+                Navigation.PushAsync(new AssessmentsPage(SelectedCourse, SelectedTerm));
             }
             else
             {
