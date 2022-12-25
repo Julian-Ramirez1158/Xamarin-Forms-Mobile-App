@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -30,46 +30,94 @@ namespace C971
             Navigation.PopAsync();
         }
 
+        Regex EmailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        public bool ValidateEmailAddress(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            return EmailRegex.IsMatch(email);
+        }
+
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            Course course = new Course()
+            try
             {
-                CourseTitle = courseTitle.Text,
-                TermId = SelectedTerm.Id,
-                Start = startDateEntered.Date,
-                End = endDateEntered.Date,
-                CourseStatus = (string)courseStatus.SelectedItem,
-                InstructorName = instructorName.Text,
-                InstructorPhone = instructorPhone.Text,
-                InstructorEmail = instructorEmail.Text,
-                CourseNotes = courseNotes.Text,
-                NotificationsOn = notificationButton.IsToggled
-            };
 
-            // open connection to db
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                bool validateEmail = ValidateEmailAddress(instructorEmail.Text);
 
-            // creates a type Post table
-            connection.CreateTable<Course>();
+                if (courseTitle.Text == null || courseTitle.Text == "")
+                {
+                    throw new Exception("Course title is required.");
+                }
+
+                if (new DateTime(startDateEntered.Date.Year, startDateEntered.Date.Month, startDateEntered.Date.Day) > new DateTime(endDateEntered.Date.Year, endDateEntered.Date.Month, endDateEntered.Date.Day))
+                {
+                    throw new Exception("The course start date cannot be scheduled after the course end date");
+                }
+
+                if (courseStatus.SelectedItem == null)
+                {
+                    throw new Exception("Course status is required.");
+                }
+
+                if (
+                        instructorName.Text == null || instructorName.Text == "" ||
+                        instructorPhone.Text == null || instructorPhone.Text == "" ||
+                        instructorEmail.Text == null || instructorEmail.Text == ""
+                    )
+                {
+                    throw new Exception("Instructor name, email, and phone number are required.");
+                }
+
+                if (!validateEmail)
+                {
+                    throw new Exception("A valid email is required.");
+                }
+
+                if (courseNotes.Text == null)
+                {
+                    courseNotes.Text = "";
+                }
 
 
-            // insert data
-            int rowsInserted = connection.Insert(course);
+                Course course = new Course()
+                {
+                    CourseTitle = courseTitle.Text,
+                    TermId = SelectedTerm.Id,
+                    Start = startDateEntered.Date,
+                    End = endDateEntered.Date,
+                    CourseStatus = (string)courseStatus.SelectedItem,
+                    InstructorName = instructorName.Text,
+                    InstructorPhone = instructorPhone.Text,
+                    InstructorEmail = instructorEmail.Text,
+                    CourseNotes = courseNotes.Text,
+                    NotificationsOn = notificationButton.IsToggled
+                };
 
-            // close the connection
-            connection.Close();
+                // open connection to db
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                // creates a type Post table
+                connection.CreateTable<Course>();
 
 
-            // TODO: add actual data validation here
-            if (rowsInserted > 0)
-            {
+                // insert data
+                int rowsInserted = connection.Insert(course);
+
+                // close the connection
+                connection.Close();
+
                 DisplayAlert("Success!", "Course succesffuly inserted", "Close");
                 Navigation.PushAsync(new TermDetails(SelectedTerm));
             }
-            else
+            catch (Exception exception)
             {
-                DisplayAlert("Failure!", "Course not inserted", "Close");
+                DisplayAlert("ERROR:", $"{exception.Message}\nCourse not inserted", "Close");
             }
+
+            
+
         }
     }
 }

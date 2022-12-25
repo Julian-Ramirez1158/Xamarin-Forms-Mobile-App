@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -41,40 +42,85 @@ namespace C971
             Navigation.PopAsync();
         }
 
+        Regex EmailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        public bool ValidateEmailAddress(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            return EmailRegex.IsMatch(email);
+        }
+
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            CourseDetails.selectedCourse.CourseTitle = courseTitle.Text;
-            CourseDetails.selectedCourse.Start = startDateEntered.Date;
-            CourseDetails.selectedCourse.End = endDateEntered.Date;
-            CourseDetails.selectedCourse.CourseStatus = (string)courseStatus.SelectedItem;
-            CourseDetails.selectedCourse.InstructorName = instructorName.Text;
-            CourseDetails.selectedCourse.InstructorPhone = instructorPhone.Text;
-            CourseDetails.selectedCourse.InstructorEmail = instructorEmail.Text;
-            CourseDetails.selectedCourse.CourseNotes = courseNotes.Text;
-            CourseDetails.selectedCourse.NotificationsOn = notificationButton.IsToggled;
 
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
-
-            connection.CreateTable<Course>();
-
-            // update data
-            int rowsInserted = connection.Update(CourseDetails.selectedCourse);
-
-            // close the connection
-            connection.Close();
-
-            if (rowsInserted > 0)
+            try
             {
+
+                bool validateEmail = ValidateEmailAddress(instructorEmail.Text);
+
+                if (courseTitle.Text == null || courseTitle.Text == "")
+                {
+                    throw new Exception("Course title is required.");
+                }
+
+                if (new DateTime(startDateEntered.Date.Year, startDateEntered.Date.Month, startDateEntered.Date.Day) > new DateTime(endDateEntered.Date.Year, endDateEntered.Date.Month, endDateEntered.Date.Day))
+                {
+                    throw new Exception("The course start date cannot be scheduled after the course end date");
+                }
+
+                if (courseStatus.SelectedItem == null)
+                {
+                    throw new Exception("Course status is required.");
+                }
+
+                if (
+                        instructorName.Text == null || instructorName.Text == "" ||
+                        instructorPhone.Text == null || instructorPhone.Text == "" ||
+                        instructorEmail.Text == null || instructorEmail.Text == ""
+                    )
+                {
+                    throw new Exception("Instructor name, email, and phone number are required.");
+                }
+
+                if (!validateEmail)
+                {
+                    throw new Exception("A valid email is required.");
+                }
+
+                if (courseNotes.Text == null)
+                {
+                    courseNotes.Text = "";
+                }
+
+                CourseDetails.selectedCourse.CourseTitle = courseTitle.Text;
+                CourseDetails.selectedCourse.Start = startDateEntered.Date;
+                CourseDetails.selectedCourse.End = endDateEntered.Date;
+                CourseDetails.selectedCourse.CourseStatus = (string)courseStatus.SelectedItem;
+                CourseDetails.selectedCourse.InstructorName = instructorName.Text;
+                CourseDetails.selectedCourse.InstructorPhone = instructorPhone.Text;
+                CourseDetails.selectedCourse.InstructorEmail = instructorEmail.Text;
+                CourseDetails.selectedCourse.CourseNotes = courseNotes.Text;
+                CourseDetails.selectedCourse.NotificationsOn = notificationButton.IsToggled;
+
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                connection.CreateTable<Course>();
+
+                // update data
+                int rowsInserted = connection.Update(CourseDetails.selectedCourse);
+
+                // close the connection
+                connection.Close();
+
                 DisplayAlert("Success!", "Course succesffuly updated", "Close");
-                // TODO fix navigation problem where back button takes you to previously unsaved entry
-
                 Navigation.PushAsync(new CourseDetails(CourseDetails.selectedCourse, CourseDetails.SelectedTerm));
-            }
-            else
-            {
-                DisplayAlert("Failure!", "Course not updated", "Close");
-            }
 
+            }
+            catch (Exception exception)
+            {
+                DisplayAlert("ERROR:", $"{exception.Message}\nCourse not updated", "Close");
+            }
 
         }
     }

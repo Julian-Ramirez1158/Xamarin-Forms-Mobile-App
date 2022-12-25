@@ -79,7 +79,28 @@ namespace C971
 
         private void addCourseButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AddCoursePage(selectedTerm));
+            try
+            {
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                // Creates table if one doesn't already exists
+                connection.CreateTable<Term>();
+                connection.CreateTable<Course>();
+                // Allows us to return the table query and turn it into a list
+                List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{selectedTerm.Title}'");
+                List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE TermId = {terms[0].Id}").ToList();
+
+                if (courses.Count >= 6)
+                {
+                    throw new Exception("A term may only have up to six courses.");
+                }
+
+                Navigation.PushAsync(new AddCoursePage(selectedTerm));
+            }
+            catch (Exception exception)
+            {
+                DisplayAlert("ERROR:", $"{exception.Message}", "Close");
+            }
+            
         }
 
         private void homeButton_Clicked(object sender, EventArgs e)

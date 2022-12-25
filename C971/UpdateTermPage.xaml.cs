@@ -30,32 +30,43 @@ namespace C971
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            TermDetails.selectedTerm.Title = termTitle.Text;
-            TermDetails.selectedTerm.Start = startDateEntered.Date;
-            TermDetails.selectedTerm.End = endDateEntered.Date;
-            
 
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
-
-            connection.CreateTable<Term>();
-
-            // update data
-            int rowsInserted = connection.Update(TermDetails.selectedTerm);
-
-            // close the connection
-            connection.Close();
-
-            if (rowsInserted > 0)
+            try
             {
+
+                if (termTitle.Text == "" || termTitle.Text == null)
+                {
+                    throw new Exception("Term title is required.");
+                }
+
+                if (new DateTime(startDateEntered.Date.Year, startDateEntered.Date.Month, startDateEntered.Date.Day) > new DateTime(endDateEntered.Date.Year, endDateEntered.Date.Month, endDateEntered.Date.Day))
+                {
+                    throw new Exception("The term start date cannot be schedueld after the term end date");
+                }
+
+                TermDetails.selectedTerm.Title = termTitle.Text;
+                TermDetails.selectedTerm.Start = startDateEntered.Date;
+                TermDetails.selectedTerm.End = endDateEntered.Date;
+
+
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                connection.CreateTable<Term>();
+
+                // update data
+                int rowsInserted = connection.Update(TermDetails.selectedTerm);
+
+                // close the connection
+                connection.Close();
+
                 DisplayAlert("Success!", "Term succesffuly updated", "Close");
-                // TODO fix navigation problem where back button takes you to previously unsaved entry
-                
                 Navigation.PushAsync(new TermDetails(TermDetails.selectedTerm));
             }
-            else
+            catch (Exception exception)
             {
-                DisplayAlert("Failure!", "Term not updated", "Close");
+                DisplayAlert("ERROR:", $"{exception.Message}\nTerm not updated", "Close");
             }
+
         }
 
         private void cancelButton_Clicked(object sender, EventArgs e)

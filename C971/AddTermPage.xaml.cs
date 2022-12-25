@@ -24,36 +24,47 @@ namespace C971
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Term post = new Term()
+
+            try
             {
-                Title = termTitle.Text,
-                Start = startDateEntered.Date,
-                End = endDateEntered.Date
-            };
 
-            // open connection to db
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                if(termTitle.Text == "" || termTitle.Text == null)
+                {
+                    throw new Exception("Term title is required.");
+                }
 
-            // creates a type Post table
-            connection.CreateTable<Term>();
+                if (new DateTime(startDateEntered.Date.Year, startDateEntered.Date.Month, startDateEntered.Date.Day) > new DateTime(endDateEntered.Date.Year, endDateEntered.Date.Month, endDateEntered.Date.Day))
+                {
+                    throw new Exception("The term start date cannot be schedueld after the term end date");
+                }
+
+                Term post = new Term()
+                {
+                    Title = termTitle.Text,
+                    Start = startDateEntered.Date,
+                    End = endDateEntered.Date
+                };
+
+                // open connection to db
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                // creates a type Post table
+                connection.CreateTable<Term>();
 
 
-            // insert data
-            int rowsInserted = connection.Insert(post);
+                // insert data
+                int rowsInserted = connection.Insert(post);
 
-            // close the connection
-            connection.Close();
-            
+                // close the connection
+                connection.Close();
 
-            // TODO: add actual data validation here
-            if (rowsInserted > 0)
-            {
                 DisplayAlert("Success!", "Term succesffuly inserted", "Close");
                 Navigation.PushAsync(new TermHomePage());
+ 
             }
-            else
+            catch(Exception exception)
             {
-                DisplayAlert("Failure!", "Term not inserted", "Close");
+                DisplayAlert("ERROR:", $"{exception.Message}\nTerm not inserted", "Close");
             }
             
         }

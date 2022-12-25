@@ -62,7 +62,27 @@ namespace C971
 
         private void AddAssessmentButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AddAssessmentPage(SelectedCourse, SelectedTerm));
+            try
+            {
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                // Creates table if one doesn't already exists
+                connection.CreateTable<Assessment>();
+                // Allows us to return the table query and turn it into a list
+                List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{SelectedCourse.CourseTitle}'");
+                List<Assessment> assessments = connection.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = {courses[0].Id}").ToList();
+
+                if (assessments.Count >= 2)
+                {
+                    throw new Exception("A course may only have up to two assessments.");
+                }
+
+                Navigation.PushAsync(new AddAssessmentPage(SelectedCourse, SelectedTerm));
+            }
+
+            catch (Exception exception)
+            {
+                DisplayAlert("ERROR:", $"{exception.Message}", "Close");
+            }
         }
 
     }
