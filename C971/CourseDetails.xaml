@@ -29,7 +29,7 @@
             </ScrollView>
             <Button Text="Assessments" x:Name="AssessmentButton" VerticalOptions="EndAndExpand" Clicked="AssessmentButton_Clicked"/>
             <Button Text="Update Course" x:Name="updateButton" VerticalOptions="End" Clicked="updateButton_Clicked"/>
-            <Button Text="Delete Course" x:Name="deleteButton" VerticalOptions="End" Clicked="deleteButton_Clicked"/>
+            <Button Text="Delete Course" x:Name="deleteButton" VerticalOptions="End" Clicked="deleteButton_Clicked" BackgroundColor="red"/>
     </StackLayout>
     
 </ContentPage>

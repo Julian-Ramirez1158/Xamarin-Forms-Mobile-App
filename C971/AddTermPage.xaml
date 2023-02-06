@@ -22,7 +22,7 @@
             <DatePicker x:Name="startDateEntered"></DatePicker>
             <Label Text="Term End Date"></Label>
             <DatePicker x:Name="endDateEntered"></DatePicker>
-            <Button Text="Save Term" VerticalOptions="EndAndExpand" Clicked="ToolbarItem_Clicked"></Button>
+            <Button Text="Save Term" VerticalOptions="EndAndExpand" Clicked="ToolbarItem_Clicked" BackgroundColor="#5dbea3"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

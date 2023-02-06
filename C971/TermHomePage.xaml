@@ -6,14 +6,10 @@
 
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="Terms" Style="{StaticResource navigationTitle}"></Label>
+            <Label Text="Terms" Style="{StaticResource navigationTitle}" Margin="0, 10, 0, 10"></Label>
         </StackLayout>
     </NavigationPage.TitleView>
     
-    
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Term" Clicked="ToolbarItem_Clicked"></ToolbarItem>
-    </ContentPage.ToolbarItems>
 
     <StackLayout>
         <ScrollView>
@@ -28,6 +24,7 @@
                 </ListView>
             </StackLayout>
         </ScrollView>
+        <Button Text="Add Term" x:Name="addTermButton" VerticalOptions="EndAndExpand" Clicked="addTermButton_Clicked" BackgroundColor="#5dbea3"/>
         <Button  Text="Student Reports" x:Name="studentReportsButton" Clicked="studentReportsButton_Clicked"/>
     </StackLayout>
     

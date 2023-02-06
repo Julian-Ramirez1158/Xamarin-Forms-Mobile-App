@@ -23,11 +23,6 @@ namespace C971
             
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new AddTermPage());
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -52,9 +47,15 @@ namespace C971
             }
         }
 
+        private void addTermButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddTermPage());
+        }
+
         private void studentReportsButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new StudentReports());
         }
+
     }
 }

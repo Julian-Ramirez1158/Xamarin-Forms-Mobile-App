@@ -22,7 +22,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Add Assessment" x:Name="AddAssessmentButton" VerticalOptions="EndAndExpand" Clicked="AddAssessmentButton_Clicked"/>
+        <Button Text="Add Assessment" x:Name="AddAssessmentButton" VerticalOptions="EndAndExpand" Clicked="AddAssessmentButton_Clicked" BackgroundColor="#5dbea3"/>
     </StackLayout>
     
 
