@@ -38,7 +38,7 @@ namespace C971
             connection.CreateTable<Term>();
             connection.CreateTable<Course>();
             // Allows us to return the table query and turn it into a list
-            List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{selectedTerm.Title}'");
+            List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  \"{selectedTerm.Title}\"");
             List<Course> entries = connection.Query<Course>($"SELECT * FROM Course WHERE TermId = {terms[0].Id}").ToList();
                 //Table<Course.Where<Course.Equals(SelectedTerm.Id)>().ToList();
 
