@@ -14,18 +14,23 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout>
+        <SearchBar x:Name="searchBarText" Placeholder="Search Course" TextChanged="SearchBar_TextChanged"></SearchBar>
         <Label x:Name="termDates" Style="{StaticResource termDates}"></Label>
-        <ListView x:Name="listView"
-              ItemSelected="listView_ItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding CourseTitle}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ScrollView>
+            <StackLayout>
+                <ListView x:Name="listView"
+                          ItemSelected="listView_ItemSelected" Style="{StaticResource listItem}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding CourseTitle}" TextColor="DarkBlue"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
         <Button Text="Add Course" x:Name="addCourseButton" Clicked="addCourseButton_Clicked" />
         <Button Text="Update Term" x:Name="updateButton" Clicked="updateButton_Clicked" />
         <Button Text="Delete Term" x:Name="deleteButton" Clicked="deleteButton_Clicked" />
     </StackLayout>
-    
+
 </ContentPage>

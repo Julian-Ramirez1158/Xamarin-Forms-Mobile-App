@@ -47,6 +47,25 @@ namespace C971
             connection.Close();
         }
 
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+            // Creates table if one doesn't already exists
+            connection.CreateTable<Term>();
+            connection.CreateTable<Course>();
+            // Allows us to return the table query and turn it into a list
+            List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{selectedTerm.Title}'");
+            List<Course> entries = connection.Query<Course>($"SELECT * FROM Course WHERE TermId = {terms[0].Id}").ToList();
+            //Table<Course.Where<Course.Equals(SelectedTerm.Id)>().ToList();
+
+            listView.ItemsSource = entries;
+
+            connection.Close();
+
+            listView.ItemsSource = entries.Where(s => //s.CourseTitle.ToLower().StartsWith(e.NewTextValue) ||
+                                                      //s.CourseTitle.StartsWith(e.NewTextValue))
+                                                      s.CourseTitle.ToUpper().Contains(searchBarText.Text.ToUpper()));
+        }
 
         private void updateButton_Clicked(object sender, EventArgs e)
         {
@@ -117,6 +136,7 @@ namespace C971
                 Navigation.PushAsync(new CourseDetails(selectedCourse, selectedTerm));
             }
         }
+
     }
     
 }
