@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:C971"
+             x:Class="C971.StudentReports">
+
+    <!--Pages can be added as references or inline-->
+  <local:CourseReport  Title="Course Report" />
+  <local:AssessmentReport Title="Assessment Report" />
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="Student Reports" Style="{StaticResource navigationTitle}"></Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Home" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+</TabbedPage>

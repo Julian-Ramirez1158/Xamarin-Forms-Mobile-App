@@ -52,6 +52,9 @@ namespace C971
             }
         }
 
-        
+        private void studentReportsButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new StudentReports());
+        }
     }
 }
