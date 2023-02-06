@@ -11,22 +11,25 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="termButton" Text="Term" Clicked="termButton_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
-
-    <StackLayout>
-        <Label x:Name="courseDates" Style="{StaticResource termDates}"></Label>
-        <Label x:Name="courseStatus" Style="{StaticResource termDates}"></Label>
-        <Label x:Name="instructorName" Style="{StaticResource termDates}"></Label>
-        <Label x:Name="instructorPhone" Style="{StaticResource termDates}"></Label>
-        <Label x:Name="instructorEmail" Style="{StaticResource termDates}"></Label>
-        <Label Text="Course Notes:" Style="{StaticResource termDates}" FontAttributes="Bold"/>
-        <Label x:Name="courseNotes" Style="{StaticResource termDates}" LineBreakMode="WordWrap"/>
-        <Button Text="Share Notes" Style="{StaticResource shareButton}" x:Name="shareNotes"
-                Clicked="shareNotes_Clicked"/>
-        <Label x:Name="notifications" Style="{StaticResource termDates}"></Label>
-
-        <Button Text="Assessments" x:Name="AssessmentButton" VerticalOptions="EndAndExpand" Clicked="AssessmentButton_Clicked"/>
-        <Button Text="Update Course" x:Name="updateButton" VerticalOptions="End" Clicked="updateButton_Clicked"/>
-        <Button Text="Delete Course" x:Name="deleteButton" VerticalOptions="End" Clicked="deleteButton_Clicked"/>
+    
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Label x:Name="courseDates" Style="{StaticResource termDates}"></Label>
+                    <Label x:Name="courseStatus" Style="{StaticResource termDates}"></Label>
+                    <Label x:Name="instructorName" Style="{StaticResource termDates}"></Label>
+                    <Label x:Name="instructorPhone" Style="{StaticResource termDates}"></Label>
+                    <Label x:Name="instructorEmail" Style="{StaticResource termDates}"></Label>
+                    <Label Text="Course Notes:" Style="{StaticResource termDates}" FontAttributes="Bold"/>
+                    <Label x:Name="courseNotes" Style="{StaticResource termDates}" LineBreakMode="WordWrap"/>
+                    <Button Text="Share Notes" Style="{StaticResource shareButton}" x:Name="shareNotes"
+                            Clicked="shareNotes_Clicked"/>
+                    <Label x:Name="notifications" Style="{StaticResource termDates}"></Label>
+                </StackLayout>
+            </ScrollView>
+            <Button Text="Assessments" x:Name="AssessmentButton" VerticalOptions="EndAndExpand" Clicked="AssessmentButton_Clicked"/>
+            <Button Text="Update Course" x:Name="updateButton" VerticalOptions="End" Clicked="updateButton_Clicked"/>
+            <Button Text="Delete Course" x:Name="deleteButton" VerticalOptions="End" Clicked="deleteButton_Clicked"/>
     </StackLayout>
     
 </ContentPage>

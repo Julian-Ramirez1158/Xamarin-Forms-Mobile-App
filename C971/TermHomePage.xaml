@@ -14,13 +14,21 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Term" Clicked="ToolbarItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <ListView x:Name="listView"
+                          ItemSelected="listView_ItemSelected" Style="{StaticResource listItem}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Title}" TextColor="DarkBlue"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        <Button  Text="Student Reports" x:Name="studentReportsButton" Clicked="studentReportsButton_Clicked"/>
+    </StackLayout>
     
-    <ListView x:Name="listView"
-              ItemSelected="listView_ItemSelected">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Title}"/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
 </ContentPage>
