@@ -8,6 +8,8 @@
     <StackLayout Margin="30" VerticalOptions="Center">
 
         <Label x:Name="greetingLabel" Text="Hello, WGU student!" Margin="0, 30" FontSize="Title"/>
+        <Entry x:Name="usernameEntry" Placeholder="Username"/>
+        <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True"/>
         <Button x:Name="loginButton" Text="Start" Clicked="Button_Clicked"/>
     </StackLayout>
 
