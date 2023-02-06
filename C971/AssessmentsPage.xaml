@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="C971.AssessmentsPage">
+    
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}"></Label>
+            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}" FontSize="Subtitle"></Label>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -14,15 +15,15 @@
 
     <StackLayout>
         <ListView x:Name="listView"
-                  ItemSelected="listView_ItemSelected">
+                        ItemSelected="listView_ItemSelected" Style="{StaticResource listItem}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding AssessmentTitle}"/>
+                    <TextCell Text="{Binding AssessmentTitle}" TextColor="DarkBlue"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Button Text="Add Assessment" x:Name="AddAssessmentButton" VerticalOptions="EndAndExpand" Clicked="AddAssessmentButton_Clicked"/>
     </StackLayout>
-
+    
 
 </ContentPage>
