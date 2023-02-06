@@ -74,25 +74,35 @@ namespace C971
 
         private void deleteButton_Clicked(object sender, EventArgs e)
         {
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
 
-            connection.CreateTable<Term>();
+            SQLiteConnection connection2 = new SQLiteConnection(App.DatabaseLocation);
+            // Creates table if one doesn't already exists
+            connection2.CreateTable<Term>();
+            connection2.CreateTable<Course>();
+            // Allows us to return the table query and turn it into a list
+            List<Term> terms = connection2.Query<Term>($"SELECT * FROM Term WHERE Title =  \"{selectedTerm.Title}\"");
+            int entries = connection2.Query<Course>($"SELECT * FROM Course WHERE TermId = {terms[0].Id}").ToList().Count();
 
-            // delete data
-            int rowsDeleted = connection.Delete(selectedTerm);
+            connection2.Close();
 
-            // close the connection
-            connection.Close();
-
-            // TODO: add some actual validation here you twit
-            if (rowsDeleted > 0)
+            if (entries == 0)
             {
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                connection.CreateTable<Term>();
+
+                // delete data
+                int rowsDeleted = connection.Delete(selectedTerm);
+
+                // close the connection
+                connection.Close();
+
                 DisplayAlert("Success!", "Term succesffuly deleted", "Close");
                 Navigation.PushAsync(new TermHomePage());
             }
             else
             {
-                DisplayAlert("Failure!", "Term not deleted", "Close");
+                DisplayAlert("Error!", "Term not deleted due to existing associated courses.", "Close");
             }
         }
 
@@ -105,7 +115,7 @@ namespace C971
                 connection.CreateTable<Term>();
                 connection.CreateTable<Course>();
                 // Allows us to return the table query and turn it into a list
-                List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  '{selectedTerm.Title}'");
+                List<Term> terms = connection.Query<Term>($"SELECT * FROM Term WHERE Title =  \"{selectedTerm.Title}\"");
                 List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE TermId = {terms[0].Id}").ToList();
 
                 if (courses.Count >= 6)

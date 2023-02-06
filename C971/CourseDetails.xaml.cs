@@ -54,26 +54,33 @@ namespace C971
 
         private void deleteButton_Clicked(object sender, EventArgs e)
         {
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+            SQLiteConnection connection2 = new SQLiteConnection(App.DatabaseLocation);
+            // Creates table if one doesn't already exists
+            connection2.CreateTable<Assessment>();
+            // Allows us to return the table query and turn it into a list
+            List<Course> courses = connection2.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  \"{selectedCourse.CourseTitle}\"");
+            int assessmentsCount = connection2.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = {courses[0].Id}").ToList().Count();
 
-            connection.CreateTable<Term>();
+            connection2.Close();
 
-            // delete data
-            int rowsDeleted = connection.Delete(selectedCourse);
-
-            // close the connection
-            connection.Close();
-
-            // TODO: add some actual validation here you twit
-            if (rowsDeleted > 0)
+            if (assessmentsCount == 0)
             {
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                connection.CreateTable<Term>();
+
+                // delete data
+                int rowsDeleted = connection.Delete(selectedCourse);
+
+                // close the connection
+                connection.Close();
                 DisplayAlert("Success!", "Course succesffuly deleted", "Close");
                 //work around for non-async navigation
                 Navigation.PushAsync(new TermDetails(SelectedTerm));
             }
             else
             {
-                DisplayAlert("Failure!", "Course not deleted", "Close");
+                DisplayAlert("Error!", "Course not deleted due to existing associated assessments.", "Close");
             }
 
         }
