@@ -68,7 +68,7 @@ namespace C971
                 // Creates table if one doesn't already exists
                 connection.CreateTable<Assessment>();
                 // Allows us to return the table query and turn it into a list
-                List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  '{SelectedCourse.CourseTitle}'");
+                List<Course> courses = connection.Query<Course>($"SELECT * FROM Course WHERE CourseTitle =  \"{SelectedCourse.CourseTitle}\"");
                 List<Assessment> assessments = connection.Query<Assessment>($"SELECT * FROM Assessment WHERE CourseId = {courses[0].Id}").ToList();
 
                 if (assessments.Count >= 2)
