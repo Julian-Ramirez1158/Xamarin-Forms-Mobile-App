@@ -98,7 +98,7 @@ namespace C971
         public CourseReport()
         {
             InitializeComponent();
-            DateStamp = "Course report as of: " + DateTime.Now.ToString("MM-dd-yyyy | HH:mm");
+            DateStamp = "Course statuses as of: " + DateTime.Now.ToString("MM-dd-yyyy | HH:mm");
             BindingContext = this;
             chartViewPie.Chart = new PieChart { Entries = entries, LabelTextSize = 40 };
 
