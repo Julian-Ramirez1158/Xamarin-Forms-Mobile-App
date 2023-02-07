@@ -15,6 +15,7 @@ namespace C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseReport : ContentPage
     {
+        public string DateStamp { get; set; }
         public static int InProgress()
         {
             SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
@@ -97,7 +98,9 @@ namespace C971
         public CourseReport()
         {
             InitializeComponent();
-            chartViewPie.Chart = new PieChart { Entries = entries, LabelTextSize = 25 };
+            DateStamp = "Course report as of: " + DateTime.Now.ToString("MM-dd-yyyy | HH:mm");
+            BindingContext = this;
+            chartViewPie.Chart = new PieChart { Entries = entries, LabelTextSize = 40 };
 
         }
 

@@ -15,6 +15,7 @@ namespace C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentReport : ContentPage
     {
+        public string DateStamp { get; set; }
         public static int OAcount()
         {
             SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
@@ -58,7 +59,9 @@ namespace C971
         public AssessmentReport()
         {
             InitializeComponent();
-            chartViewBar.Chart = new BarChart { Entries = entries, ValueLabelOrientation = Orientation.Horizontal, LabelOrientation = Orientation.Horizontal, LabelTextSize = 35 };
+            DateStamp = "Assessment report as of: " + DateTime.Now.ToString("MM-dd-yyyy | HH:mm");
+            BindingContext = this;
+            chartViewBar.Chart = new BarChart { Entries = entries, ValueLabelOrientation = Orientation.Horizontal, LabelOrientation = Orientation.Horizontal, LabelTextSize = 40 };
         }
     }
 }
