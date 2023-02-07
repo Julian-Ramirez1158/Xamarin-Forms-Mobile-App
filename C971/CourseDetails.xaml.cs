@@ -29,7 +29,7 @@ namespace C971
             instructorPhone.Text = $"Instructor Phone: {selectedCourse.InstructorPhone}";
             instructorEmail.Text = $"Instructor Email: {selectedCourse.InstructorEmail}";
             courseNotes.Text = selectedCourse.CourseNotes;
-            notifications.Text = selectedCourse.NotificationsOn ? "Notifications Enabled" : "Notifications Disabled";
+            notifications.Text = selectedCourse.NotificationsOn ? "Notifications: Enabled" : "Notifications: Disabled";
 
 
             // Hide default android navbar back button

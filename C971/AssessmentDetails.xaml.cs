@@ -27,7 +27,7 @@ namespace C971
             navigationTitle.Text = selectedAssessment.AssessmentTitle;
             assessmentDates.Text = $"Start Date: {selectedAssessment.Start:MM-dd-yyyy}\nEnd Date: {selectedAssessment.End:MM-dd-yyyy}";
             assessmentType.Text = $"Assessment Type: {selectedAssessment.AssessmentType}";
-            notifications.Text = selectedAssessment.NotificationsOn ? "Notifications Enabled" : "Notifications Disabled";
+            notifications.Text = selectedAssessment.NotificationsOn ? "Notifications: Enabled" : "Notifications: Disabled";
 
 
             // Hide default android navbar back button
