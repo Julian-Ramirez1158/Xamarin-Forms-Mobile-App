@@ -44,28 +44,30 @@ namespace C971
             Navigation.PushAsync(new UpdateAssessmentPage(this, SelectedCourse, SelectedTerm));
         }
 
-        private void DeleteAssessmentButton_Clicked(object sender, EventArgs e)
+        async private void DeleteAssessmentButton_Clicked(object sender, EventArgs e)
         {
-            SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
 
-            connection.CreateTable<Assessment>();
+            bool answer = await DisplayAlert("Warning!", $"Are you sure you want to delete course: {SelectedAssessment.AssessmentTitle}?", "Yes", "No");
 
-            // delete data
-            int rowsDeleted = connection.Delete(SelectedAssessment);
-
-            // close the connection
-            connection.Close();
-
-            // TODO: add some actual validation here you twit
-            if (rowsDeleted > 0)
+            if (answer)
             {
-                DisplayAlert("Success!", "Assessment succesffuly deleted", "Close");
+                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+
+                connection.CreateTable<Assessment>();
+
+                // delete data
+                connection.Delete(SelectedAssessment);
+
+                // close the connection
+                connection.Close();
+
+                await DisplayAlert("Success!", "Assessment succesffuly deleted", "Close");
                 //work around for non-async navigation
-                Navigation.PushAsync(new AssessmentsPage(SelectedCourse, SelectedTerm));
+                await Navigation.PushAsync(new AssessmentsPage(SelectedCourse, SelectedTerm));
             }
             else
             {
-                DisplayAlert("Failure!", "Assessment not deleted", "Close");
+                return;
             }
         }
 

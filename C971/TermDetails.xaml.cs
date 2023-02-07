@@ -72,7 +72,7 @@ namespace C971
             Navigation.PushAsync(new UpdateTermPage(this));
         }
 
-        private void deleteButton_Clicked(object sender, EventArgs e)
+        async private void deleteButton_Clicked(object sender, EventArgs e)
         {
 
             SQLiteConnection connection2 = new SQLiteConnection(App.DatabaseLocation);
@@ -87,22 +87,31 @@ namespace C971
 
             if (entries == 0)
             {
-                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                bool answer = await DisplayAlert("Warning!", $"Are you sure you want to delete term: {selectedTerm.Title}?", "Yes", "No");
 
-                connection.CreateTable<Term>();
+                if (answer)
+                {
+                    SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
 
-                // delete data
-                int rowsDeleted = connection.Delete(selectedTerm);
+                    connection.CreateTable<Term>();
 
-                // close the connection
-                connection.Close();
+                    // delete data
+                    connection.Delete(selectedTerm);
 
-                DisplayAlert("Success!", "Term succesffuly deleted", "Close");
-                Navigation.PushAsync(new TermHomePage());
+                    // close the connection
+                    connection.Close();
+
+                    await DisplayAlert("Success!", "Term succesffuly deleted", "Close");
+                    await Navigation.PushAsync(new TermHomePage());
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
-                DisplayAlert("Error!", "Term not deleted due to existing associated courses.", "Close");
+                await DisplayAlert("Error!", "Term not deleted due to existing associated courses.", "Close");
             }
         }
 

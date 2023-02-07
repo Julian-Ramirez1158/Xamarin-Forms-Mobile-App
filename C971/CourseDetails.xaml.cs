@@ -52,7 +52,7 @@ namespace C971
             Navigation.PushAsync(new UpdateCoursePage(this));
         }
 
-        private void deleteButton_Clicked(object sender, EventArgs e)
+        async private void deleteButton_Clicked(object sender, EventArgs e)
         {
             SQLiteConnection connection2 = new SQLiteConnection(App.DatabaseLocation);
             // Creates table if one doesn't already exists
@@ -65,22 +65,31 @@ namespace C971
 
             if (assessmentsCount == 0)
             {
-                SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
+                bool answer = await DisplayAlert("Warning!", $"Are you sure you want to delete course: {selectedCourse.CourseTitle}?", "Yes", "No");
 
-                connection.CreateTable<Term>();
+                if (answer)
+                {
+                    SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation);
 
-                // delete data
-                int rowsDeleted = connection.Delete(selectedCourse);
+                    connection.CreateTable<Term>();
 
-                // close the connection
-                connection.Close();
-                DisplayAlert("Success!", "Course succesffuly deleted", "Close");
-                //work around for non-async navigation
-                Navigation.PushAsync(new TermDetails(SelectedTerm));
+                    // delete data
+                    connection.Delete(selectedCourse);
+
+                    // close the connection
+                    connection.Close();
+                    await DisplayAlert("Success!", "Course succesffuly deleted", "Close");
+                    //work around for non-async navigation
+                    await Navigation.PushAsync(new TermDetails(SelectedTerm));
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
-                DisplayAlert("Error!", "Course not deleted due to existing associated assessments.", "Close");
+                await DisplayAlert("Error!", "Course not deleted due to existing associated assessments.", "Close");
             }
 
         }
