@@ -11,7 +11,7 @@
     
     <StackLayout Margin="30" VerticalOptions="Center">
         <Image Source="SheltieIcon.png" HeightRequest="100" Margin="0, 0, 0, 0"/>
-        <Label x:Name="greetingLabel" Text="Hello, QU student!" Margin="0, 30" FontSize="Title"/>
+        <Label x:Name="greetingLabel" Text="Hello, QU student!" Margin="0, 15, 0, 15" FontSize="Title" HorizontalOptions="Center"/>
         <Entry x:Name="usernameEntry" Placeholder="Username"/>
         <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True"/>
         <Button x:Name="loginButton" Text="Login" Clicked="Button_Clicked"/>
