@@ -35,7 +35,7 @@
                             x:Name="notificationButton"
                             HorizontalOptions="CenterAndExpand" 
                             Scale="1.2"/>
-            <Button Text="Save Assessment" x:Name="SaveAssessmentButton" VerticalOptions="EndAndExpand" Clicked="SaveAssessmentButton_Clicked" BackgroundColor="#5dbea3"/>
+            <Button Text="Save Assessment" x:Name="SaveAssessmentButton" VerticalOptions="EndAndExpand" Clicked="SaveAssessmentButton_Clicked" BackgroundColor="#42c90c"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

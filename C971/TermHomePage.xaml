@@ -24,7 +24,7 @@
                 </ListView>
             </StackLayout>
         </ScrollView>
-        <Button Text="Add Term" x:Name="addTermButton" VerticalOptions="EndAndExpand" Clicked="addTermButton_Clicked" BackgroundColor="#5dbea3"/>
+        <Button Text="Add Term" x:Name="addTermButton" VerticalOptions="EndAndExpand" Clicked="addTermButton_Clicked" BackgroundColor="#42c90c"/>
         <Button  Text="Student Reports" x:Name="studentReportsButton" Clicked="studentReportsButton_Clicked"/>
     </StackLayout>
     

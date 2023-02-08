@@ -28,7 +28,7 @@
                 </ListView>
             </StackLayout>
         </ScrollView>
-        <Button Text="Add Course" x:Name="addCourseButton" Clicked="addCourseButton_Clicked" BackgroundColor="#5dbea3"/>
+        <Button Text="Add Course" x:Name="addCourseButton" Clicked="addCourseButton_Clicked" BackgroundColor="#42c90c"/>
         <Button Text="Update Term" x:Name="updateButton" Clicked="updateButton_Clicked" />
         <Button Text="Delete Term" x:Name="deleteButton" Clicked="deleteButton_Clicked" BackgroundColor="red"/>
     </StackLayout>

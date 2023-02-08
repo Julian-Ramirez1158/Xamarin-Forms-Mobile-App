@@ -43,7 +43,7 @@
                                 x:Name="notificationButton"
                                 HorizontalOptions="CenterAndExpand" 
                                 Scale="1.2"/>
-                <Button x:Name="SaveButton" Text="Save Course" VerticalOptions="EndAndExpand" Clicked="SaveButton_Clicked" BackgroundColor="#5dbea3"></Button>
+                <Button x:Name="SaveButton" Text="Save Course" VerticalOptions="EndAndExpand" Clicked="SaveButton_Clicked" BackgroundColor="#42c90c"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
