@@ -24,7 +24,7 @@ namespace C971
             string password = passwordEntry.Text;
             bool isPasswordEmpty = string.IsNullOrEmpty(password);
 
-            if (isUsernameEmpty == true || isPasswordEmpty == true)
+            if (userName != "admin" || password != "admin")
             {
                 // prevent navigation to next page
                 DisplayAlert("Alert", "Please enter a valid username and password", "Close");
