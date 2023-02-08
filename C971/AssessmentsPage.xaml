@@ -5,7 +5,7 @@
     
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}" FontSize="Subtitle"></Label>
+            <Label x:Name="navigationTitle" Style="{StaticResource navigationTitle}"></Label>
         </StackLayout>
     </NavigationPage.TitleView>
 

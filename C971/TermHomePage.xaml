@@ -6,7 +6,7 @@
 
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="Terms" Style="{StaticResource navigationTitle}" Margin="0, 10, 0, 10"></Label>
+            <Label Text="Terms Page" Style="{StaticResource navigationTitle}" Margin="0, 10, 0, 10"></Label>
         </StackLayout>
     </NavigationPage.TitleView>
     
