@@ -15,7 +15,7 @@
     
     <ContentPage.Content> 
         <StackLayout>
-            <Label x:Name="assessmentDates" Style="{StaticResource Details}"></Label>
+            <Label x:Name="assessmentDates" Style="{StaticResource termDates}"></Label>
             <Label x:Name="assessmentStatus" Style="{StaticResource Details}"></Label>
             <Label x:Name="assessmentType" Style="{StaticResource Details}"></Label>
             <Label x:Name="notifications" Style="{StaticResource Details}"></Label>

@@ -59,9 +59,9 @@ namespace C971
         public AssessmentReport()
         {
             InitializeComponent();
-            DateStamp = "Assessment types as of: " + DateTime.Now.ToString("MM-dd-yyyy | HH:mm");
+            DateStamp = "Assessment types as of:\n" + DateTime.Now.ToString("MM-dd-yyyy | HH:mm");
             BindingContext = this;
-            chartViewBar.Chart = new BarChart { Entries = entries, ValueLabelOrientation = Orientation.Horizontal, LabelOrientation = Orientation.Horizontal, LabelTextSize = 40 };
+            chartViewBar.Chart = new BarChart { Entries = entries, ValueLabelOrientation = Orientation.Horizontal, LabelOrientation = Orientation.Horizontal, LabelTextSize = 30 };
         }
     }
 }

@@ -38,8 +38,7 @@
                 <Setter Property="Margin" Value="0,20,0,0"/>
             </Style>
             <Style x:Key="Details" TargetType="Label">
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="Subtitle"/>
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>

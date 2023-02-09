@@ -17,12 +17,12 @@
         <StackLayout>
             <Label Text="Welcome to the Add Assessment Page!"
                 HorizontalOptions="Center" />
-            <Entry x:Name="assessmentTitle" Placeholder="Add Assessment Title"></Entry>
-            <Label Text="Assessment Start Date"></Label>
-            <DatePicker x:Name="startDateEntered"></DatePicker>
-            <Label Text="Assessment End Date"></Label>
-            <DatePicker x:Name="endDateEntered"></DatePicker>
-            <Picker Title="Assessment Type" x:Name="assessmentType">
+            <Entry x:Name="assessmentTitle" Placeholder="Add Assessment Title" FontSize="Small"></Entry>
+            <Label Text="Assessment Start Date" FontSize="Small"></Label>
+            <DatePicker x:Name="startDateEntered" FontSize="Small"></DatePicker>
+            <Label Text="Assessment End Date" FontSize="Small"></Label>
+            <DatePicker x:Name="endDateEntered" FontSize="Small"></DatePicker>
+            <Picker Title="Assessment Type" x:Name="assessmentType" FontSize="Small">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Objective Assessment</x:String>
@@ -30,7 +30,7 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+            <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0" FontSize="Small"/>
                     <Switch 
                             x:Name="notificationButton"
                             HorizontalOptions="CenterAndExpand" 

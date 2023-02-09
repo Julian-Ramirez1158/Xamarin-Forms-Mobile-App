@@ -18,12 +18,12 @@
                 <StackLayout>
                     <Label Text="Welcome to the Add Course Page!"
                         HorizontalOptions="Center" />
-                    <Entry x:Name="courseTitle" Placeholder="Add Course Title"></Entry>
-                    <Label Text="Course Start Date"></Label>
-                    <DatePicker x:Name="startDateEntered"></DatePicker>
-                    <Label Text="Course End Date"></Label>
-                    <DatePicker x:Name="endDateEntered"></DatePicker>
-                    <Picker Title="Course Status" x:Name="courseStatus">
+                    <Entry x:Name="courseTitle" Placeholder="Add Course Title" FontSize="Small"></Entry>
+                    <Label Text="Course Start Date" FontSize="Small"></Label>
+                    <DatePicker x:Name="startDateEntered" FontSize="Small"></DatePicker>
+                    <Label Text="Course End Date" FontSize="Small"></Label>
+                    <DatePicker x:Name="endDateEntered" FontSize="Small"></DatePicker>
+                    <Picker Title="Course Status" x:Name="courseStatus" FontSize="Small">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>In Progress</x:String>
@@ -33,12 +33,11 @@
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
-                    <Label Text="Instructor Information"></Label>
-                    <Entry Placeholder="Name" x:Name="instructorName"></Entry>
-                    <Entry Placeholder="Phone" x:Name="instructorPhone"></Entry>
-                    <Entry Placeholder="Email" x:Name="instructorEmail"></Entry>
-                    <Editor Placeholder="Course Notes" x:Name="courseNotes" AutoSize="TextChanges" />
-                    <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                    <Entry Placeholder="Instructor Name" x:Name="instructorName" FontSize="Small"></Entry>
+                    <Entry Placeholder="Instructor Phone" x:Name="instructorPhone" FontSize="Small"></Entry>
+                    <Entry Placeholder="Instructor Email" x:Name="instructorEmail" FontSize="Small"></Entry>
+                    <Editor Placeholder="Course Notes" x:Name="courseNotes" AutoSize="TextChanges"/>
+                    <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0" FontSize="Small"/>
                         <Switch 
                                     x:Name="notificationButton"
                                     HorizontalOptions="CenterAndExpand" 

@@ -17,11 +17,11 @@
         <StackLayout>
             <Label Text="Welcome to the Update Term Page!"
                 HorizontalOptions="Center" />
-            <Entry x:Name="termTitle" Placeholder="Add Term Title"></Entry>
-            <Label Text="Term Start Date"></Label>
-            <DatePicker x:Name="startDateEntered"></DatePicker>
-            <Label Text="Term End Date"></Label>
-            <DatePicker x:Name="endDateEntered"></DatePicker>
+            <Entry x:Name="termTitle" Placeholder="Add Term Title" FontSize="Small"></Entry>
+            <Label Text="Term Start Date" FontSize="Small"></Label>
+            <DatePicker x:Name="startDateEntered" FontSize="Small"></DatePicker>
+            <Label Text="Term End Date" FontSize="Small"></Label>
+            <DatePicker x:Name="endDateEntered" FontSize="Small"></DatePicker>
             <Button Text="Save Updated Term" VerticalOptions="EndAndExpand" Clicked="Button_Clicked" BackgroundColor="#42c90c"></Button>
         </StackLayout>
     </ContentPage.Content>

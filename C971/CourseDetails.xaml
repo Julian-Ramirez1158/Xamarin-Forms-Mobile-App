@@ -15,12 +15,12 @@
         <StackLayout>
             <ScrollView>
                 <StackLayout>
-                    <Label x:Name="courseDates" Style="{StaticResource Details}"></Label>
+                    <Label x:Name="courseDates" Style="{StaticResource termDates}"></Label>
                     <Label x:Name="courseStatus" Style="{StaticResource Details}"></Label>
                     <Label x:Name="instructorName" Style="{StaticResource Details}"></Label>
                     <Label x:Name="instructorPhone" Style="{StaticResource Details}"></Label>
                     <Label x:Name="instructorEmail" Style="{StaticResource Details}"></Label>
-                    <Label Text="Course Notes:" Style="{StaticResource Details}" FontAttributes="Bold"/>
+                    <Label Text="Course Notes:" Style="{StaticResource Details}"/>
                     <Label x:Name="courseNotes" Style="{StaticResource Details}" LineBreakMode="MiddleTruncation"/>
                     <Label x:Name="notifications" Style="{StaticResource Details}"></Label>
                     <Button Text="Share Notes" Style="{StaticResource shareButton}" x:Name="shareNotes"

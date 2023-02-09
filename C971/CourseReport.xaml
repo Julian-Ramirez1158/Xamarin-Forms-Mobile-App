@@ -7,8 +7,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding DateStamp}" Style="{StaticResource termDates}" Margin="0, 35, 0, 0"/>
-            <microcharts:ChartView x:Name="chartViewPie" HeightRequest="300" VerticalOptions="CenterAndExpand"/>
+            <Label Text="{Binding DateStamp}" Style="{StaticResource termDates}" Margin="0, 35, 0, 70" HorizontalOptions="Center"/>
+            <microcharts:ChartView x:Name="chartViewPie" HeightRequest="300" VerticalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -85,7 +85,7 @@ namespace C971
             
             Course course = new Course()
             {
-                CourseTitle = "SampleData Course 1",
+                CourseTitle = "SampleData Course",
                 Start = sampleDate,
                 End = sampleDate.AddMonths(4).AddDays(-1),
                 CourseStatus = "Plan to take",
@@ -96,7 +96,7 @@ namespace C971
             };
             Assessment assessment1 = new Assessment()
             {
-                AssessmentTitle = "Sample Assessment 1",
+                AssessmentTitle = "Sample Assessment1",
                 Start = sampleDate.AddMonths(1).AddDays(-1),
                 End = sampleDate.AddMonths(2),
                 AssessmentType = "Objective Assessment",
@@ -104,7 +104,7 @@ namespace C971
             };
             Assessment assessment2 = new Assessment()
             {
-                AssessmentTitle = "Sample Assessment 2",
+                AssessmentTitle = "Sample Assessment2",
                 Start = sampleDate.AddMonths(2).AddDays(-1),
                 End = sampleDate.AddMonths(3),
                 AssessmentType = "Performance Assessment",
